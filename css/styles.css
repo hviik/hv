@@ -1,0 +1,934 @@
+/* =============================================
+   Import Normalize.css and Google Fonts
+============================================= */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;700&display=swap');
+
+/* =============================================
+   Global Overflow Prevention & Smooth Scroll
+============================================= */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  scroll-behavior: smooth;
+}
+
+/* =============================================
+   1. Root Variables
+============================================= */
+:root {
+  --neon-cyan: #a4ddd9;
+  --neon-purple: #948ccd;
+  --bg-dark: #0f172a;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --text-light: #f8fafc;
+  --text-dark: #081831;
+  --accent-pink: #ec4899;
+  --accent-orange: #f97316;
+  --masculine-gradient-start: #31383c;
+  --masculine-gradient-end: #0f5270;
+  --masculine-box-shadow: rgba(44, 80, 104, 0.7);
+}
+
+/* =============================================
+   2. Theme Modes & Overrides
+============================================= */
+body {
+  background: var(--bg-dark);
+  color: #fff;
+  transition: background 0.3s, color 0.3s;
+  padding: 0 1rem;
+}
+
+body.light-mode {
+  --bg-dark: #f5f5f5;
+  --neon-cyan: #364b97;
+  --neon-purple: #8e44ad;
+  background: var(--bg-dark);
+  color: #333;
+}
+
+body.light-mode p,
+body.light-mode h3 {
+  color: #333 !important;
+}
+body.light-mode a {
+  color: #1d5a83;
+}
+
+/* Light Mode Mobile Nav */
+body.light-mode .mobile-nav {
+  background: rgba(245, 245, 245, 0.95);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+body.light-mode .mobile-nav a {
+  color: #333;
+  background: linear-gradient(145deg, rgba(0,0,0,0.03), rgba(0,0,0,0.01));
+  border: 1px solid rgba(0,0,0,0.1);
+}
+body.light-mode .mobile-nav a:hover {
+  color: var(--neon-purple);
+  background: linear-gradient(145deg, rgba(41,128,185,0.1), rgba(142,68,173,0.1));
+  border-color: rgba(41,128,185,0.2);
+}
+body.light-mode .mobile-nav::before {
+  background: radial-gradient(circle at 50% 0%, rgba(41,128,185,0.1), transparent 70%);
+}
+body.light-mode .theme-toggle {
+  color: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+}
+body.light-mode .form-input {
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+}
+body.light-mode .contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #333;
+}
+body.light-mode footer {
+  background: rgba(0, 0, 0, 0.03);
+  color: #333;
+}
+body.light-mode .learn-modal,
+body.light-mode .projects-modal {
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  border: 2px solid #ccc;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific overrides for learn & projects options in light mode */
+body.light-mode .learn-option h3,
+body.light-mode .projects-option h3 {
+  color: #333;
+}
+body.light-mode .learn-option p,
+body.light-mode .projects-option p {
+  color: #333;
+}
+body.light-mode .learn-option .tech,
+body.light-mode .projects-option .tech {
+  color: #666;
+}
+
+/* Override links in specific components for better visibility in light mode */
+body.light-mode .cyber-button,
+body.light-mode .cyber-button:link,
+body.light-mode .cyber-button:visited,
+body.light-mode .github-link,
+body.light-mode .github {
+  color: #fff !important;
+}
+
+/* =============================================
+   Glass Morphism for Sections (Dark & Light)
+============================================= */
+body:not(.light-mode) .intro,
+body:not(.light-mode) #intro,
+body:not(.light-mode) .content-section,
+body:not(.light-mode) .subsection {
+  background: rgba(25, 29, 34, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem auto;
+}
+body.light-mode .intro,
+body.light-mode #intro,
+body.light-mode .content-section,
+body.light-mode .subsection {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem auto;
+}
+
+/* =============================================
+   3. Global Resets & Typography
+============================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+a:hover {
+  color: var(--neon-purple);
+  text-shadow: 0 0 5px var(--neon-purple);
+}
+
+/* =============================================
+   4. Sections & Layout
+============================================= */
+section {
+  min-height: 100vh;
+  padding: 3rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.content-section,
+#about,
+#implementation {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 1rem;
+  text-align: left;
+}
+
+/* =============================================
+   5. About Me Section
+============================================= */
+#about {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+#about p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* =============================================
+   6. 3D Canvas Background (Animation Adjustments)
+============================================= */
+#math-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.26;
+  pointer-events: none;
+  filter: brightness(1.2);
+  will-change: transform, opacity;
+}
+
+/* =============================================
+   7. Navigation & Mobile Menu
+============================================= */
+.floating-nav {
+  position: fixed;
+  top: 2rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  background: var(--glass-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.floating-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+  position: relative;
+}
+.floating-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--neon-cyan);
+  transition: width 0.3s;
+}
+.floating-nav a:hover::after {
+  width: 100%;
+}
+.theme-toggle {
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--neon-cyan);
+  border-radius: 20px;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.2rem;
+  color: var(--neon-cyan);
+  transition: background 0.3s, color 0.3s;
+}
+.theme-toggle:hover {
+  background: transparent;
+  color: var(--neon-cyan);
+}
+body.light-mode .theme-toggle:hover {
+  background: transparent;
+  color: var(--neon-cyan);
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--neon-cyan);
+  transition: background 0.3s;
+}
+
+/* Mobile Navigation Dropdown */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  background: rgba(5, 5, 5, 0.95);
+  padding: 1.5rem;
+  z-index: 999;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+body:not(.light-mode) .mobile-nav {
+  background: rgba(25,29,34,0.75);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.mobile-nav.show {
+  display: flex;
+  transform: translateY(0);
+  opacity: 1;
+}
+.mobile-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
+}
+.mobile-nav a:hover {
+  color: var(--neon-purple);
+  background: linear-gradient(145deg, rgba(102,217,239,0.1), rgba(155,89,182,0.1));
+  border-color: rgba(102,217,239,0.3);
+  transform: translateX(10px);
+  box-shadow: 0 5px 15px rgba(102,217,239,0.2);
+}
+.mobile-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(102,217,239,0.1), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Responsive: Show hamburger and hide regular nav links */
+@media (max-width: 1068px) {
+  .hamburger {
+    display: flex;
+  }
+  .floating-nav a {
+    display: none;
+  }
+}
+
+/* =============================================
+   8. Button Styles
+============================================= */
+.cyber-button,
+.cyber-button:link,
+.cyber-button:visited {
+  text-decoration: none;
+  color: #fff;
+}
+.cyber-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  background: linear-gradient(45deg, var(--masculine-gradient-start), var(--masculine-gradient-end));
+  border: none;
+  font-weight: 700;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 1rem;
+  box-shadow: 0 0 10px var(--masculine-box-shadow);
+}
+.cyber-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--masculine-box-shadow);
+}
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background: linear-gradient(45deg, var(--masculine-gradient-start), var(--masculine-gradient-end));
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px var(--masculine-box-shadow);
+}
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--masculine-box-shadow);
+}
+
+/* =============================================
+   9. Contact Section
+============================================= */
+#contact {
+  position: relative;
+  padding-bottom: 3rem;
+  margin-top: 3rem;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+}
+.contact-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--neon-cyan);
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.form-input {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+/* =============================================
+   10. Learn Modal & Projects Modal
+============================================= */
+.learn-modal,
+.projects-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  width: 80%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2rem;
+  border-radius: 15px;
+  z-index: 1001;
+  background: rgba(25, 29, 34, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+body.light-mode .learn-modal,
+body.light-mode .projects-modal {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #222;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+}
+.modal-active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+.learn-modal::-webkit-scrollbar,
+.projects-modal::-webkit-scrollbar {
+  width: 8px;
+}
+.learn-modal::-webkit-scrollbar-thumb,
+.projects-modal::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 4px;
+}
+.learn-modal::-webkit-scrollbar-track,
+.projects-modal::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: var(--neon-cyan);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.close-modal:hover {
+  color: var(--neon-purple);
+}
+.learn-options,
+.projects-options {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.learn-option,
+.projects-option {
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.05) 100%);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  border: 1px solid transparent;
+  position: relative;
+  padding: 1.5rem;
+}
+.learn-option h3,
+.projects-option h3 {
+  margin-bottom: 0.75rem;
+  color: var(--neon-cyan);
+  font-weight: 600;
+}
+.learn-option p,
+.projects-option p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  color: #ddd;
+}
+.learn-option .tech,
+.projects-option .tech {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 0.5rem;
+}
+.learn-option:hover,
+.projects-option:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+.github-link {
+  font-size: 0.85rem;
+  background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  transition: background 0.3s;
+}
+.github {
+  font-size: 0.85rem;
+  background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.github-link:hover {
+  background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =============================================
+   11. Footer
+============================================= */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  margin-top: 2rem;
+}
+.duck-button {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--neon-cyan);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  transition: color 0.3s;
+}
+.duck-button:hover {
+  color: var(--neon-purple);
+}
+
+/* =============================================
+   12. Animations & Effects
+============================================= */
+.dots {
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+.dots span {
+  display: inline-block;
+  font-weight: bold;
+  animation: bounce 1.5s infinite;
+}
+.dots span:nth-child(1) { animation-delay: 0s; }
+.dots span:nth-child(2) { animation-delay: 0.3s; }
+.dots span:nth-child(3) { animation-delay: 0.6s; }
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* =============================================
+   13. Placeholder Container
+============================================= */
+.placeholder-container {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--neon-cyan);
+  pointer-events: none;
+}
+
+/* =============================================
+   14. Extended Content Sections
+============================================= */
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: left;
+  margin-top: 2rem;
+  line-height: 1.7;
+}
+.content-section img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+
+/* =============================================
+   15. Code Snippet Styling
+============================================= */
+.code-snippet {
+  background: #1e1e1e;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  width: 100%;
+  box-sizing: border-box;
+}
+.code-snippet pre {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  color: #f8f8f2;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: left;
+}
+
+/* =============================================
+   16. Subsection Styling
+============================================= */
+.subsection {
+  margin-top: 2rem;
+}
+.subsection h3 {
+  margin-bottom: 0.75rem;
+  color: var(--neon-purple);
+}
+.subsection p {
+  margin-bottom: 1rem;
+}
+
+/* =============================================
+   17. Data Visualization Chart Adjustments
+   (Specific styling for #vitalsChart only)
+============================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+#math-canvas {
+  will-change: transform, opacity;
+}
+
+
+/* =============================================
+   18. Certification Section Styling
+============================================= */
+#certifications {
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#certifications h2 {
+  font-size: 2.5rem;
+  color: var(--text-light);
+  margin-bottom: 3rem;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+.certification-card {
+  background: rgba(15, 23, 42, 0.75);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.certification-card h3 {
+  color: var(--text-light);
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+  min-height: 3.5rem;
+  transition: color 0.3s ease;
+}
+.certification-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+  transition: color 0.3s ease;
+}
+.certification-card .cyber-button {
+  align-self: flex-start;
+  margin-top: auto;
+  transition: transform 0.3s ease;
+}
+body.light-mode #certifications h2 {
+  color: var(--text-dark);
+}
+body.light-mode .certification-card {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+body.light-mode .certification-card h3 {
+  color: var(--text-dark);
+}
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  padding: 1rem;
+}
+@media (max-width: 1024px) {
+  .certifications-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  #certifications h2 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .certification-card {
+    padding: 1.5rem;
+  }
+  .certification-card h3 {
+    font-size: 1.3rem;
+    min-height: auto;
+    margin-bottom: 1rem;
+  }
+  .certification-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .certifications-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .certification-card {
+    padding: 1.25rem;
+  }
+  #certifications h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+}
+.certification-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(102, 217, 239, 0.15);
+  border-color: rgba(102, 217, 239, 0.3);
+}
+.certification-card:hover .cyber-button {
+  transform: translateY(-2px);
+}
+.certification-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(164,221,217,0.25);
+  border-color: rgba(164,221,217,0.3);
+}
+.certification-card:hover .cyber-button {
+  transform: translateY(-2px);
+}
+
+/* =============================================
+   20. Overrides for Contact Form & Code Snippet Responsiveness
+============================================= */
+.contact-form .cyber-button {
+  position: static;
+  margin-top: 1rem;
+}
+
+/* =============================================
+   21. Additional Responsive Adjustments (Max-Width 480px)
+============================================= */
+@media (max-width: 480px) {
+  body {
+    font-size: 0.9rem;
+  }
+  .contact-form,
+  .content-section,
+  #about,
+  #implementation {
+    padding: 0 1rem;
+    margin-top: 1rem;
+  }
+  .code-snippet {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .contact-card {
+    padding: 1rem;
+  }
+  .mobile-nav a {
+    font-size: 1rem;
+  }
+}
+
+/* =============================================
+   22. Specific Mobile Optimizations for iPhone 14 / Small 6-inch Screens
+============================================= */
+@media (max-width: 480px) {
+  h1.glitch {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  p, li, .subsection p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .content-section {
+    padding: 0 0.5rem;
+    margin-top: 1rem;
+  }
+  .code-snippet {
+    padding: 0.75rem;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* =============================================
+   23. Smooth Scroll & Scrollbar Styling
+============================================= */
+html {
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-purple);
+}

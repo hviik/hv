@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Certifications | Hirdesh Viikram</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <!-- Font Awesome for Social Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+  <!-- The fractal 3D background canvas -->
+  <canvas id="math-canvas"></canvas>
+
+  <!-- Back Button -->
+  <button class="back-button" onclick="window.history.back()">Back</button>
+
+  <!-- Floating Navigation (same as on your index page) -->
+  <nav class="floating-nav">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#portfolio">My Projects</a>
+    <a href="index.html#learn">Learning Pathways</a>
+    <a href="index.html#contact">Contact</a>
+    <!-- Dark/Light Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <!-- Hamburger icon for mobile -->
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Dropdown -->
+  <div id="mobileNav" class="mobile-nav">
+    <a href="index.html#home" onclick="toggleMobileNav()">Home</a>
+    <a href="index.html#about" onclick="toggleMobileNav()">About</a>
+    <a href="index.html#portfolio" onclick="toggleMobileNav()">My Projects</a>
+    <a href="index.html#learn" onclick="toggleMobileNav()">Learning Pathways</a>
+    <a href="index.html#contact" onclick="toggleMobileNav()">Contact</a>
+  </div>
+
+  <!-- Certifications Section -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <div class="certifications-grid">
+      <!-- Udemy Certificate Card -->
+      <div class="certification-card" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; backdrop-filter: blur(10px);">
+        <h3 style="color: var(--neon-cyan);">Udemy Certification</h3>
+        <p><strong>Python for Data Science and Machine Learning</strong>
+            Gained proficiency in using Python for data analysis, creating visualizations, and implementing machine learning algorithms. 
+        </p>
+        <a href="https://www.udemy.com/certificate/UC-c76996ae-2f6b-4014-83cf-0c913871184c/" target="_blank" class="cyber-button" style="margin-top: 1rem;">View</a>
+      </div>
+
+      <!-- Coursera Certificate Card -->
+      <div class="certification-card" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; backdrop-filter: blur(10px);">
+        <h3 style="color: var(--neon-cyan);">Coursera Certification</h3>
+        <p><strong>Neural Networks and Deep Learning</strong> 
+            Learned foundational concepts of neural networks, including forward and backward propagation, and built deep learning models.
+            
+        </p>
+        <a href="https://www.coursera.org/account/accomplishments/verify/Z6LXZ6U2UPWS" target="_blank" class="cyber-button" style="margin-top: 1rem;">View</a>
+      </div>
+
+      <!-- LeetCode Profile Card -->
+      <div class="certification-card" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; backdrop-filter: blur(10px);">
+        <h3 style="color: var(--neon-cyan);">LeetCode Profile</h3>
+        <p>
+            Demonstrated problem-solving skills through various coding challenges, enhancing algorithmic thinking and coding proficiency.
+        </p>
+        <a href="https://leetcode.com/viikramcodes" target="_blank" class="cyber-button" style="margin-top: 1rem;">View</a>
+      </div>
+
+      <!-- PESU IO: Introduction to Neural Networks -->
+      <div class="certification-card" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; backdrop-filter: blur(10px);">
+        <h3 style="color: var(--neon-cyan);">Introduction to Neural Networks</h3>
+        <p>Studied the fundamental concepts behind neural networks, including their structure and basic applications.</p>
+        <a href="#" class="cyber-button" style="margin-top: 1rem;">View</a>
+      </div>
+
+      <!-- PESU IO: Cloud Computing Fundamentals with Google Cloud Platform -->
+      <div class="certification-card" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; backdrop-filter: blur(10px);">
+        <h3 style="color: var(--neon-cyan);">Cloud Computing Fundamentals with Google Cloud Platform</h3>
+        <p>Acquired foundational knowledge in cloud computing, focusing on Google Cloud Platform's services and best practices.</p>
+        <a href="#" class="cyber-button" style="margin-top: 1rem;">View</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (consistent with your index page) -->
+  <footer>
+    <p>&copy; 2025 Hirdesh Viikram. All rights reserved.</p>
+    <button class="duck-button" onclick="toggleDuckMusic()">🦆</button>
+    <audio id="duckAudio" src="music/duckmusic.mp3"></audio>
+  </footer>
+
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Your Main JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

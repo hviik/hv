@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edge Computing</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+<body>
+  <!-- Background Canvas (animation continues as before) -->
+  <canvas id="math-canvas"></canvas>
+
+  <!-- Floating Navigation Bar (retained but minimal) -->
+  <nav class="floating-nav">
+    <!-- Dark/Light Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <!-- Hamburger Icon (Mobile) -->
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Dropdown (empty for now) -->
+  <div id="mobileNav" class="mobile-nav"></div>
+
+  <!-- Placeholder Content -->
+  <div class="placeholder-container">
+    <h1 style="font-size: 2rem; margin: 0;">
+      Work in Progress
+      <span class="dots">
+        <span>.</span><span>.</span><span>.</span>
+      </span>
+    </h1>
+  </div>
+
+  <!-- Go Back Button -->
+  <button class="back-button" onclick="window.history.back()">Go Back</button>
+
+  <!-- Footer (optional, stays at the bottom) -->
+  <footer style="text-align: center; padding: 1rem; color: var(--neon-cyan, #0ff); position: relative; z-index: 2;">
+    <p>&copy; 2025 Hirdesh Viikram. All rights reserved.</p>
+    <button class="duck-button" onclick="toggleDuckMusic()">🦆</button>
+    <audio id="duckAudio" src="music/duckmusic.mp3"></audio>
+  </footer>
+
+  <!-- Three.js Library (for background animation) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

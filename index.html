@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Hello, I'm Hirdesh Viikram. Passionate about machine learning, distributed systems, scalable solutions, and innovative technologies. Focused on building robust architectures and exploring cutting-edge algorithms to address real-world challenges. Eager to delve into diverse fields to discover new interests and drive impactful projects.">
+  <meta name="keywords" content="machine learning, distributed systems, scalable solutions, innovative technologies, robust architectures, cutting-edge algorithms, real-world challenges, impactful projects, technology exploration, software engineering, Python, Java, C++, algorithms, programming languages">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hirdesh Viikram</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <!-- Font Awesome 5.15.4 for Social Icons (no integrity) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+  <!-- The fractal canvas behind everything -->
+  <canvas id="math-canvas"></canvas>
+
+  <!-- Floating Navigation -->
+  <nav class="floating-nav">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#portfolio">My Projects</a>
+    <a href="#learn">Learning Pathways</a>
+    <a href="#contact">Contact</a>
+    <!-- Dark/Light Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <!-- Hamburger icon for mobile -->
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>  
+
+  <!-- Mobile Navigation Dropdown -->
+  <div id="mobileNav" class="mobile-nav">
+    <a href="#home" onclick="toggleMobileNav()">Home</a>
+    <a href="#about" onclick="toggleMobileNav()">About</a>
+    <a href="#portfolio" onclick="toggleMobileNav()">My Projects</a>
+    <a href="#learn" onclick="toggleMobileNav()">Learning Pathways</a>
+    <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home">
+    <h1 class="glitch">Hirdesh Viikram</h1>
+    <h4 class="subtitle">Software developer</h4>
+    <button class="cyber-button" onclick="downloadResume()">Download Resume</button>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      Hello, I'm Hirdesh Viikram. I have a strong interest in machine learning and distributed systems, looking foward to working on scalable, innovative solutions that address real-world challenges. I am enthusiastic about working with robust architectures and cutting-edge algorithms, and I eagerly anticipate exploring diverse fields and topics to uncover additional areas of interest.
+      <a href="certificates.html" class="github">View certifications.</a>
+  </section>
+  <!-- Portfolio Section with Trigger for Projects Modal -->
+  <section id="portfolio">
+    <h2>My Projects</h2>
+    <button class="cyber-button" onclick="showProjectsModal()">Discover Projects</button>
+  </section>
+
+  <!-- Learn Pathways Section -->
+  <section id="learn">
+    <div class="content-box">
+      <h2>Learning Pathways</h2>
+      <button class="cyber-button" onclick="showLearnModal()">Explore Modules</button>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Let's Connect</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <h3>Email</h3>
+        <p><a href="mailto:contact@hviik.com" style="color: var(--neon-cyan);">contact@hviik.com</a></p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🌐</div>
+        <h3>Social</h3>
+        <p>Follow me on these platforms:</p>
+        <div class="social-icons" style="display: flex; gap: 1rem; justify-content: center; font-size: 1.6rem; margin-top: 0.5rem;">
+          <a href="https://github.com/hviik" target="_blank" style="color: var(--neon-cyan);">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/hirdeshviikram/" target="_blank" style="color: var(--neon-cyan);">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://leetcode.com/viikramcodes/" target="_blank" style="color: var(--neon-cyan);">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
+            </svg>
+          </a>
+               
+          <a href="https://instagram.com/hirdeshviikram" target="_blank" style="color: var(--neon-cyan);">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h3>Location</h3>
+        <p>Bangalore, India</p>
+      </div>
+    </div>
+    <form class="contact-form" action="https://formspree.io/f/xovjwldq" method="POST">
+      <input type="text" class="form-input" placeholder="Your Name" required>
+      <input type="email" class="form-input" placeholder="Your Email" required>
+      <textarea class="form-input" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="cyber-button">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Hirdesh Viikram. All rights reserved.</p>
+         <button class="duck-button" onclick="toggleDuckMusic()">🦆</button> 
+         <audio id="duckAudio" src="music/duckmusic.mp3"></audio>
+  </footer>
+
+  <!-- Learn Modal -->
+  <div id="learnModal" class="learn-modal">
+    <div class="close-modal" onclick="hideLearnModal()">✕</div>
+    <h2 style="color: var(--neon-cyan);">Topics</h2>
+    <div class="learn-options">
+      <div class="learn-option" onclick="navigateTo('neural-networks')">
+          <h3>Neural Network Architectures</h3>
+          <p>Exploring the foundational structures of deep learning models, including feedforward networks, convolutional networks, and recurrent networks, which are essential for tasks like image recognition and natural language processing.</p>
+      </div>
+      <div class="learn-option" onclick="navigateTo('optimization-techniques')">
+          <h3>Optimization Techniques</h3>
+          <p>Understanding methods such as gradient descent, stochastic gradient descent, and advanced algorithms like Adam and RMSprop, which are crucial for training efficient and accurate machine learning models.</p>
+      </div>
+      <div class="learn-option" onclick="navigateTo('distributed-computing')">
+          <h3>Distributed Computing</h3>
+          <p>Delving into the principles and practices of distributing computational tasks across multiple machines, enabling the handling of large-scale data and complex computations in AI applications.</p>
+      </div>
+      <div class="learn-option" onclick="navigateTo('edge-computing')">
+          <h3>Edge Computing</h3>
+          <p>Bringing computation and data storage closer to the sources of data, reducing latency and bandwidth usage, and enabling real-time processing in applications like IoT devices and autonomous vehicles.</p>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects Modal -->
+  <div id="projectsModal" class="projects-modal">
+    <div class="close-modal" onclick="hideProjectsModal()">✕</div>
+    <h2 style="color: var(--neon-cyan);">Projects Studio</h2>
+    <div class="projects-options">
+      <div class="projects-option" onclick="navigateTo('youtube-clone')">
+        <h3>YouTube Skeleton Clone</h3>
+        <p>
+          Serverless video processing using GCP & Firebase. Utilizes Google Cloud Storage for hosting, Cloud Pub/Sub for event-driven processing, FFmpeg for transcoding, and scalable Cloud Run workers. Features a responsive Next.js client with Firebase Auth.
+        </p>
+        <div class="tech">Technologies: GCP, Firebase, Next.js, FFmpeg</div>
+        <a href="https://github.com/hviik/youtube-skeleton-clone" target="_blank" class="github-link">GitHub</a>
+      </div>
+      <div class="projects-option" onclick="navigateTo('health-assistant')">
+        <h3>AI-Powered Health Assistant</h3>
+        <p>
+          A backend health monitoring system featuring ML-based analysis (Random Forest), NLP-driven voice interaction, and real-time data visualization with Plotly. Built with FastAPI, WebSockets for live updates, and persistent storage using SQLAlchemy.
+        </p>
+        <div class="tech">Technologies: FastAPI, SQLAlchemy, WebSockets, Plotly, Random Forest</div>
+        <a href="https://github.com/hviik/ai-health-assistant" target="_blank" class="github-link">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
