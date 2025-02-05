@@ -167,7 +167,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // =====================
 function downloadResume() {
   const link = document.createElement('a');
-  link.href = 'https://drive.google.com/uc?export=download&id=1cHa8VLuah5jxy6ELNOOETNAJCn8hlMm3';
+  link.href = 'https://drive.google.com/uc?export=download&id=1tTiMYpOAbj-tCFoEy0xPPVryD2s8hw8l';
   link.download = 'Hirdesh_Viikram_Resume.pdf';
   link.click();
 }
