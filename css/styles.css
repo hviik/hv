@@ -575,8 +575,18 @@ body.light-mode .projects-modal {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s, text-shadow 0.3s;
 }
+
+.github-link:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  /* Optionally, slightly adjust gradient stops for a subtle effect */
+  background: linear-gradient(45deg, var(--neon-cyan) 15%, var(--neon-purple) 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .github {
   font-size: 0.85rem;
   background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
@@ -584,11 +594,6 @@ body.light-mode .projects-modal {
   -webkit-text-fill-color: transparent;
   text-decoration: none;
   transition: background 0.3s;
-}
-.github-link:hover {
-  background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 /* =============================================
