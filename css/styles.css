@@ -579,12 +579,8 @@ body.light-mode .projects-modal {
 }
 
 .github-link:hover {
-  transform: scale(1.05);
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
-  /* Optionally, slightly adjust gradient stops for a subtle effect */
-  background: linear-gradient(45deg, var(--neon-cyan) 15%, var(--neon-purple) 85%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  transform: scale(1.03);
+  filter: brightness(1.1);
 }
 
 .github {
