@@ -933,3 +933,34 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--neon-purple);
 }
+
+
+/* =============================================
+   24. Images
+============================================= */
+
+.illustration-container {
+  text-align: center;
+  margin-bottom: 25px; /* Adds space before the next element */
+}
+
+.illustration-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.illustration-container figcaption {
+  margin-top: 5px; /* Small space under the image */
+}
+
+.caption, .credit {
+  font-size: 14px;
+  color: #717171;
+  margin: 3px 0; /* Keeps both captions close together */
+}
+
+.credit {
+  margin-bottom: 10px; /* Extra space before next elements */
+}
