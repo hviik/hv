@@ -2,24 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Neural Networks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neural Network Architectures - In-Depth & Interactive Guide</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
   <link rel="manifest" href="favicon/site.webmanifest">
 </head>
 <body>
-  <!-- Background Canvas (animation continues as before) -->
+  <!-- Background Canvas for animated effects -->
   <canvas id="math-canvas"></canvas>
 
-  <!-- Floating Navigation Bar (retained but minimal) -->
+  <!-- Floating Navigation Bar -->
   <nav class="floating-nav">
+    <a href="#overview">Overview</a>
+    <a href="#feedforward">Feedforward</a>
+    <a href="#cnn">CNNs</a>
+    <a href="#rnn">RNNs</a>
+    <a href="#advanced">Advanced</a>
+    <a href="#transformers">Transformers</a>
+    <a href="#resources">Definitions</a>
+    <a href="#contact">Contact</a>
     <!-- Dark/Light Mode Toggle -->
     <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-    <!-- Hamburger Icon (Mobile) -->
+    <!-- Hamburger Icon for Mobile -->
     <div class="hamburger" onclick="toggleMobileNav()">
       <span></span>
       <span></span>
@@ -27,30 +37,452 @@
     </div>
   </nav>
 
-  <!-- Mobile Navigation Dropdown (empty for now) -->
-  <div id="mobileNav" class="mobile-nav"></div>
-
-  <!-- Placeholder Content -->
-  <div class="placeholder-container">
-    <h1 style="font-size: 2rem; margin: 0;">
-      Work in Progress
-      <span class="dots">
-        <span>.</span><span>.</span><span>.</span>
-      </span>
-    </h1>
+  <!-- Mobile Navigation Dropdown -->
+  <div id="mobileNav" class="mobile-nav">
+    <a href="#overview" onclick="toggleMobileNav()">Overview</a>
+    <a href="#feedforward" onclick="toggleMobileNav()">Feedforward</a>
+    <a href="#cnn" onclick="toggleMobileNav()">CNNs</a>
+    <a href="#rnn" onclick="toggleMobileNav()">RNNs</a>
+    <a href="#advanced" onclick="toggleMobileNav()">Advanced</a>
+    <a href="#transformers" onclick="toggleMobileNav()">Transformers</a>
+    <a href="#resources" onclick="toggleMobileNav()">Definitions</a>
+    <a href="#contact" onclick="toggleMobileNav()">Contact</a>
   </div>
 
-  <!-- Go Back Button -->
-  <button class="back-button" onclick="window.history.back()">Go Back</button>
+  <!-- Overview Section with Glassmorphism Background -->
+  <section id="intro">
+    <h1 class="glitch" data-text="Neural Network Architectures">Neural Network Architectures</h1>
+    <p style="max-width: 800px; margin-bottom: 2rem;">
+      Imagine teaching a computer to recognize your face in photos, predict stock market trends, or even write poetry. Sounds cool, right? It might seem complex at first, but neural networks have made it surprisingly accessible. Let's unravel how these digital brains work, layer by layer.
+    </p>
+    <br>
+    <p style="max-width: 800px; margin-top: 0.5rem;">
+      <small>
+        For a brief introduction and a thorough hands-on experience, visit the 
+        <a href="https://course.fast.ai/" target="_blank">Practical Deep Learning</a></small>
+    </p>
+  </section>
 
-  <!-- Footer (optional, stays at the bottom) -->
-  <footer style="text-align: center; padding: 1rem; color: var(--neon-cyan, #0ff); position: relative; z-index: 2;">
+  <!-- Feedforward Neural Networks Section -->
+  <section id="feedforward" class="content-section">
+    <h2 style="text-align:center; margin-bottom: 1rem;">Feedforward Neural Networks</h2>
+    <p>
+      Feedforward networks, or multilayer perceptrons (MLPs), form the backbone of neural network theory. In these architectures, data flows in one direction from the input layer, through one or more hidden layers, to the output layer with no feedback loops.
+    </p>
+    <p>
+      <br>
+      <strong>Key Concepts:</strong>
+      <ul>
+        <li><strong>Forward Propagation:</strong> Each neuron calculates a weighted sum of its inputs, adds a bias, and applies a non-linear activation function to produce its output.</li>
+        <li><strong>Backward Propagation:</strong> The network computes gradients of the loss function with respect to each weight, using the chain rule, to understand how to adjust the parameters.</li>
+        <li><strong>Gradient Descent:</strong> An iterative optimization algorithm that updates weights by moving in the direction of steepest descent (negative gradient) to minimize the loss.</li>
+      </ul>
+    </p>
+    <br>
+    <p>
+      <strong>Detailed Explanation:</strong> In forward propagation, data is transformed layer-by-layer. Then, during backpropagation, errors are propagated backward from the output layer to update the weights. This cyclic process of forward and backward passes is what enables the network to learn from data.
+    </p>
+    <br>
+    <p>
+      <strong>Example Code:</strong> The following Python example (using NumPy) demonstrates a simple one-hidden-layer network. Every step is commented to explain its purpose.
+    </p>
+    <div class="code-snippet">
+      <pre>
+import numpy as np
+
+# Sigmoid activation function and its derivative.
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def sigmoid_derivative(x):
+    s = sigmoid(x)
+    return s * (1 - s)
+
+# Define a simple neural network with one hidden layer.
+class SimpleNN:
+    def __init__(self, input_size, hidden_size, output_size):
+        # Randomly initialize weights and biases.
+        self.W1 = np.random.randn(input_size, hidden_size)
+        self.b1 = np.zeros((1, hidden_size))
+        self.W2 = np.random.randn(hidden_size, output_size)
+        self.b2 = np.zeros((1, output_size))
+    
+    def forward(self, X):
+        # Compute linear combination for hidden layer.
+        self.Z1 = np.dot(X, self.W1) + self.b1  
+        # Apply activation function to hidden layer outputs.
+        self.A1 = sigmoid(self.Z1)              
+        # Compute linear combination for output layer.
+        self.Z2 = np.dot(self.A1, self.W2) + self.b2  
+        # Apply activation function to output (for prediction).
+        self.A2 = sigmoid(self.Z2)              
+        return self.A2
+    
+    def backward(self, X, Y, output, learning_rate=0.1):
+        m = Y.shape[0]
+        # Compute error at the output.
+        dZ2 = output - Y  
+        # Compute gradients for output layer weights and biases.
+        dW2 = np.dot(self.A1.T, dZ2) / m  
+        db2 = np.sum(dZ2, axis=0, keepdims=True) / m
+        
+        # Propagate the error to the hidden layer.
+        dA1 = np.dot(dZ2, self.W2.T)  
+        dZ1 = dA1 * sigmoid_derivative(self.Z1)  
+        dW1 = np.dot(X.T, dZ1) / m  
+        db1 = np.sum(dZ1, axis=0, keepdims=True) / m
+        
+        # Update weights and biases with gradient descent.
+        self.W1 -= learning_rate * dW1
+        self.b1 -= learning_rate * db1
+        self.W2 -= learning_rate * dW2
+        self.b2 -= learning_rate * db2
+
+# Demonstrate network training on the XOR problem.
+if __name__ == "__main__":
+    nn = SimpleNN(input_size=2, hidden_size=3, output_size=1)
+    # XOR dataset.
+    X = np.array([[0,0], [0,1], [1,0], [1,1]])
+    Y = np.array([[0], [1], [1], [0]])
+    for epoch in range(10000):
+        output = nn.forward(X)
+        nn.backward(X, Y, output, learning_rate=0.1)
+        if epoch % 1000 == 0:
+            loss = np.mean((output - Y) ** 2)
+            print("Epoch:", epoch, "Loss:", loss)
+      </pre>
+    </div>
+    <p>
+      <figure class="illustration-container">
+        <img src="img/img10.avif" alt="Backpropagation illustration">
+        <figcaption>
+          <p class="caption">A simple illustration of how backpropagation works by adjusting weights.</p>
+          <p class="credit">
+            Image Credit: 
+            <a href="https://www.geeksforgeeks.org/backpropagation-in-neural-network/" target="_blank" rel="noopener noreferrer">
+              GeeksforGeeks
+            </a>
+          </p>
+        </figcaption>
+      </figure>            
+    </p>
+    <p>
+      For more on gradient descent variants (like SGD, Adam, etc.) and optimization strategies, visit the 
+      <a href="https://machinelearningmastery.com/gentle-introduction-mini-batch-gradient-descent-configure-batch-size/" target="_blank">Machine Learning Mastery guide on Gradient Descent</a>.
+    </p>
+  </section>
+
+  <!-- Convolutional Neural Networks (CNNs) Section -->
+  <section id="cnn" class="content-section">
+    <h2 style="text-align:center; margin-bottom: 1rem;">Convolutional Neural Networks (CNNs)</h2>
+    <p>
+      CNNs are the workhorses of computer vision. They automatically learn hierarchical features from images using layers of convolution and pooling. This makes them ideal for tasks like image classification, object detection, and more.
+    </p>
+    <p>
+      <br>
+      <strong>How CNNs Work:</strong>
+      <ul>
+        <li><strong>Convolutional Layers:</strong> Use learnable filters that slide (convolve) over the input image, extracting key features like edges and textures.</li>
+        <li><strong>Pooling Layers:</strong> Downsample the spatial dimensions, reducing computational load and providing translation invariance.</li>
+        <li><strong>Flatten &amp; Dense Layers:</strong> Convert the multidimensional feature maps into a one-dimensional vector and process it with fully connected layers for final classification.</li>
+      </ul>
+    </p>
+    <br>
+    <p>
+      <strong>In-Depth CNN Example:</strong> Below is a Keras-based example that builds a CNN model for image classification. Each layer is commented extensively to explain its purpose.
+    </p>
+    <div class="code-snippet">
+      <pre>
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from tensorflow.keras.optimizers import Adam
+
+def build_cnn_model(input_shape, num_classes):
+    model = Sequential()
+    model.add(Conv2D(32, (3, 3), activation='relu', input_shape=input_shape))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(128, (3, 3), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Flatten())
+    model.add(Dense(128, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(num_classes, activation='softmax'))
+    model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
+    return model
+
+if __name__ == "__main__":
+    input_shape = (64, 64, 3)
+    num_classes = 10
+    cnn_model = build_cnn_model(input_shape, num_classes)
+    cnn_model.summary()
+      </pre>
+    </div>
+    <p>
+      <figure class="illustration-container">
+        <img src="img/img6.avif" alt="CNN filters">
+        <figcaption>
+          <p class="caption">Visualization of evolving CNN filters</p>
+          <p class="credit">
+            Image Credit: 
+            <a href="https://www.researchgate.net/publication/336805909_A_High-Accuracy_Model_Average_Ensemble_of_Convolutional_Neural_Networks_for_Classification_of_Cloud_Image_Patches_on_Small_Datasets" target="_blank" rel="noopener noreferrer">
+              Research Gate
+            </a>
+          </p>
+        </figcaption>
+      </figure> 
+    </p>
+    <p>
+      The above example demonstrates how convolutional layers extract features, pooling layers reduce dimensions, and dense layers perform final classification. For more details, consult the 
+      <a href="https://pytorch.org/docs/stable/nn.html#convolution-layers" target="_blank">PyTorch Convolutional Layers documentation</a>.
+    </p>
+  </section>
+
+  <!-- Recurrent Neural Networks (RNNs) Section -->
+  <section id="rnn" class="content-section">
+    <h2 style="text-align:center; margin-bottom: 1rem;">Recurrent Neural Networks (RNNs)</h2>
+    <p>
+      RNNs excel at processing sequential data by retaining an internal state (memory) across time steps. This makes them especially powerful for tasks like language modeling, speech recognition, and time-series forecasting.
+    </p>
+    <p>
+      <br>
+      <strong>Core Principles:</strong>
+      <ul>
+        <li><strong>Temporal Dynamics:</strong> At each time step, the network uses both the current input and the hidden state from previous time steps.</li>
+        <li><strong>LSTM &amp; GRU:</strong> Specialized RNN variants that combat the vanishing gradient problem by using gating mechanisms.</li>
+        <li><strong>Attention Mechanisms:</strong> Enhance RNNs by allowing the network to focus on important parts of the input sequence.</li>
+      </ul>
+    </p>
+    <br>
+    <p>
+      <strong>Detailed RNN Example:</strong> The following Keras-based example builds an RNN model using LSTM layers. Extensive comments explain each step from input processing to final output.
+    </p>
+    <div class="code-snippet">
+      <pre>
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Dropout
+
+def build_rnn_model(input_shape, num_classes):
+    model = Sequential()
+    model.add(LSTM(64, input_shape=input_shape, return_sequences=True))
+    model.add(LSTM(32))
+    model.add(Dropout(0.5))
+    model.add(Dense(64, activation='relu'))
+    model.add(Dense(num_classes, activation='softmax'))
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    return model
+
+if __name__ == "__main__":
+    input_shape = (100, 50)
+    num_classes = 5
+    rnn_model = build_rnn_model(input_shape, num_classes)
+    rnn_model.summary()
+      </pre>
+    </div>
+    <p>
+      <figure class="illustration-container">
+        <img src="img/img11.avif" alt="RNN">
+        <figcaption>
+          <p class="caption">Recurrent Neural Network</p>
+          <p class="credit">
+            Image Credit: 
+            <a href="https://botpenguin.com/glossary/recurrent-neural-network" target="_blank" rel="noopener noreferrer">
+              Bot Penguin
+            </a>
+          </p>
+        </figcaption>
+      </figure> 
+    </p>
+    <p>
+      This RNN example demonstrates how LSTM (or GRU) layers can be stacked to capture sequential patterns effectively. For more interactive tutorials, check out the 
+      <a href="https://www.tensorflow.org/guide/keras/rnn" target="_blank">TensorFlow RNN Guide</a>.
+    </p>
+  </section>
+
+  <!-- Advanced Topics Section -->
+  <section id="advanced" class="content-section">
+    <h2 style="text-align:center; margin-bottom: 1rem;">Advanced Topics in Neural Network Architectures</h2>
+    <p>
+      Beyond the classical architectures, modern research has introduced numerous innovations that push neural networks to new heights. These include attention mechanisms, transformers that have revolutionized NLP, graph neural networks (GNNs) for relational data, and capsule networks to capture spatial hierarchies.
+    </p>
+    <p>
+      <br>
+      <strong>Emerging Trends:</strong>
+      <ul>
+        <li>
+          <strong>Attention &amp; Transformers:</strong> Allow the model to weigh the importance of different inputs dynamically. See 
+          <a href="https://arxiv.org/abs/1706.03762" target="_blank">"Attention Is All You Need"</a> for details.
+        </li>
+        <li>
+          <strong>Graph Neural Networks (GNNs):</strong> Extend deep learning to data structured as graphs, enabling complex relational reasoning.
+        </li>
+        <li>
+          <strong>Capsule Networks:</strong> Aim to better preserve hierarchical relationships and spatial hierarchies within the data.
+        </li>
+      </ul>
+    </p>
+    <br>
+    <p>
+      <strong>SOTA Insights:</strong> Researchers are continuously refining regularization methods, dynamic learning rate schedulers, and custom activation functions. Keeping up with conferences like 
+      <a href="https://icml.cc/" target="_blank">ICML</a>, 
+      <a href="https://nips.cc/" target="_blank">NeurIPS</a>, and 
+      <a href="https://cvpr.thecvf.com/" target="_blank">CVPR</a> will provide cutting-edge insights.
+    </p>
+  </section>
+
+  <!-- Transformers Section -->
+  <section id="transformers" class="content-section">
+    <h2 style="text-align:center; margin-bottom: 1rem;">Transformers: Revolutionizing Sequence Processing</h2>
+    <p>
+      Transformers have emerged as one of the most influential architectures in modern deep learning, revolutionizing natural language processing (NLP) and beyond. Introduced in the seminal paper <a href="https://arxiv.org/abs/1706.03762" target="_blank">"Attention Is All You Need"</a>, transformers rely solely on self-attention mechanisms dispensing with traditional recurrent or convolutional layers to process entire sequences in parallel.
+    </p>
+    <p>
+      <br>
+      <strong>Key Components:</strong>
+      <ul>
+        <li><strong>Self-Attention Mechanism:</strong> Computes a weighted sum of input embeddings, allowing the model to focus on the most relevant parts of a sequence.</li>
+        <li><strong>Multi-Head Attention:</strong> Runs several self-attention operations in parallel to capture diverse contextual relationships.</li>
+        <li><strong>Positional Encoding:</strong> Injects sequence order information into the model since transformers do not process data sequentially.</li>
+        <li><strong>Feedforward Networks:</strong> Apply non-linear transformations to the attention outputs for further processing.</li>
+        <li><strong>Residual Connections &amp; Layer Normalization:</strong> Enhance gradient flow and stabilize training.</li>
+      </ul>
+    </p>
+    <br>
+    <p>
+      <strong>Detailed Explanation:</strong> Unlike RNNs or CNNs, transformers process the entire input simultaneously. The self-attention mechanism calculates attention scores by comparing each token in the sequence with every other token. This allows the model to learn relationships regardless of their distance in the sequence. Multi-head attention extends this idea by enabling the model to focus on different aspects of the input concurrently.
+    </p>
+    <div class="code-snippet">
+      <pre>
+# Example pseudocode for self-attention
+def self_attention(Q, K, V):
+    # Q: Queries, K: Keys, V: Values
+    d_k = Q.shape[-1]
+    scores = np.dot(Q, K.T) / np.sqrt(d_k)
+    weights = softmax(scores)
+    output = np.dot(weights, V)
+    return output
+
+# Example pseudocode for multi-head attention
+def multi_head_attention(Q, K, V, num_heads):
+    head_outputs = []
+    for _ in range(num_heads):
+        head_outputs.append(self_attention(Q, K, V))
+    concatenated = np.concatenate(head_outputs, axis=-1)
+    return linear_transform(concatenated)
+      </pre>
+    </div>
+    <p>
+      Transformers are now the backbone of state-of-the-art models such as BERT, GPT, and T5. Their ability to handle long-range dependencies and parallelize training has opened up new possibilities in language translation, text generation, computer vision, and more.
+    </p>
+    <p>
+      <br>
+      <strong>Applications:</strong>
+      <ul>
+        <li>Natural Language Processing (e.g., language translation, sentiment analysis)</li>
+        <li>Text Generation (e.g., GPT series)</li>
+        <li>Computer Vision (e.g., Vision Transformers)</li>
+        <li>Speech Recognition and Synthesis</li>
+      </ul>
+    </p>
+    <br>
+    <p>
+      For a deeper dive into transformers, check out the <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank">Illustrated Transformer</a> or explore the comprehensive <a href="https://huggingface.co/transformers/" target="_blank">Hugging Face Transformers documentation</a>.
+    </p>
+    <br>
+    <figure class="illustration-container">
+      <img src="img/img9.avif" alt="Architecture of the Transformer Model" height="50%" width="50%">
+      <figcaption>
+        <p class="caption">Architecture of the Transformer Model</p>
+        <p class="credit">
+          Image Credit: 
+          <a href="https://production-media.paperswithcode.com/methods/new_ModalNet-21.jpg" target="_blank" rel="noopener noreferrer">
+            Papers with Code
+          </a>
+        </p>
+      </figcaption>
+    </figure> 
+  </section>
+
+  <!-- Definitions & Resources Section -->
+  <section id="resources" class="content-section">
+    <h2 style="text-align:center; margin-bottom: 1rem;">Definitions & Resources</h2>
+    <div class="subsection">
+      <h3>Key Definitions</h3>
+      <p>
+        <strong>Neural Network:</strong> A computational system modeled after the brain’s interconnected neurons, capable of learning from data.
+        More details on the 
+        <a href="https://en.wikipedia.org/wiki/Artificial_neural_network" target="_blank">Wikipedia page</a>.
+      </p>
+      <p>
+        <strong>Activation Function:</strong> Introduces non-linearity into the network (e.g., ReLU, sigmoid, tanh). 
+        Explore further at 
+        <a href="https://machinelearningmastery.com/choose-an-activation-function-for-deep-learning/" target="_blank">Machine Learning Mastery</a>.
+      </p>
+      <p>
+        <strong>Loss Function:</strong> Measures the difference between predicted outputs and true values, guiding the optimization process.
+        See the 
+        <a href="https://pytorch.org/docs/stable/nn.html#loss-functions" target="_blank">PyTorch Loss Functions</a> documentation.
+      </p>
+    </div>
+    <div class="subsection">
+      <h3>Additional Resources</h3>
+      <ul>
+        <li><a href="https://www.deeplearningbook.org/" target="_blank">Deep Learning Book by Ian Goodfellow</a></li>
+        <li><a href="https://cs231n.github.io/" target="_blank">Stanford CS231n: CNNs for Visual Recognition</a></li>
+        <li><a href="https://course.fast.ai/" target="_blank">Practical Deep Learning</a></li>
+        <li><a href="https://d2l.ai/" target="_blank">Dive into Deep Learning</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 style="margin-bottom: 1rem;">Let's Connect</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <h3>Email</h3>
+        <p><a href="mailto:contact@hirdeshviikram.com">contact@hirdeshviikram.com</a></p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🌐</div>
+        <h3>Social</h3>
+        <p>Follow me on:</p>
+        <div class="social-icons" style="display: flex; gap: 1rem; justify-content: center; font-size: 1.6rem;">
+          <a href="https://github.com/hviik" target="_blank"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/hirdeshviikram/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://leetcode.com/viikramcodes/" target="_blank">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
+            </svg>
+          </a>
+          <a href="https://instagram.com/hirdeshviikram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h3>Location</h3>
+        <p>Bangalore, India</p>
+      </div>
+    </div>
+    <!-- Interactive Contact Form -->
+    <form class="contact-form" action="https://formspree.io/f/xovjwldq" method="POST">
+      <input type="text" class="form-input" name="name" placeholder="Your Name" required>
+      <input type="email" class="form-input" name="email" placeholder="Your Email" required>
+      <textarea class="form-input" name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="cyber-button">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
     <p>&copy; 2025 Hirdesh Viikram. All rights reserved.</p>
     <button class="duck-button" onclick="toggleDuckMusic()">🦆</button>
     <audio id="duckAudio" src="music/duckmusic.mp3"></audio>
   </footer>
 
-  <!-- Three.js Library (for background animation) -->
+  <!-- Three.js Library (for animated background effects) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="js/main.js"></script>
 </body>
